@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Miguel Expósito Martín">
+    <title>Introducción al análisis de datos con R - CEARC 2016</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <link href="https://cdn.jsdelivr.net/fontawesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <section>
+
+
+            <h2> Introducción y preliminares <h2/>
+
+                <img alt="R logo" src="./img/R_logo.svg" width="50%"/>
+
+
+        </section>
+        <section data-markdown>
+
+## ¿qué es R?
+
+un dialecto del lenguaje de programación S
+
+
+        </section>
+        <section data-markdown>
+        ## ¿qué es S?
+        - un lenguaje desarrollado por John Chambers (entre otros) en los Laboratorios Bell
+        - creado en 1976 para ser un entorno de desarrollo estadístico interno
+        - en principio no contenía funciones para el modelado estadístico
+        - en 1988 se reescribió en C en su versión 3, parecida al sistema actual
+        - en 1998 se publicó la versión 4, utilizada hoy en día
+
+
+
+        </section>
+
+        <section data-markdown>
+        ## ¿quién está detrás?
+        - los laboratorios Bell otorgaron una licencia exclusiva de desarrollo a StatSci (ahora Insightful)
+        - Insightful compró S a Lucent por 2 M$ en 2004
+        - Insightful fue adquirida por TIBCO en 2008 por 25 M$
+        - la versión comercializada en la actualidad se denomina S-PLUS
+
+        </section>
+        <section data-markdown>
+        ## filosofía de S
+        >Queríamos que los usuarios pudieran empezar con un entorno interactivo donde no fueran conscientes de estar programando. Entonces, conforme sus necesidades se aclarasen y su sofisticación aumentase, tendrían que ser capaces de deslizarse gradualmente dentro del mundo de la programación, donde los aspectos relacionados con el sistema y el lenguaje se volverían más importantes.
+        </section>
+        <section data-markdown>
+        ## ¿y R?
+        - creado en Nueva Zelanda en 1991 por Ross Ihaka y Robert Gentleman
+        - en 1995 R pasa a tener licencia GNU (software libre)
+        - en 1997 se forma el R Core Group, que controla el proyecto
+        - en 2000 se publica la versión 1.0.0
+        - en octubre de 2016, versión 3.3.1
+        </section>
+        <section data-markdown>
+        ## características de R
+        - sintaxis y semántica similar a la de S
+        - se ejecuta sobre prácticamente cualquier plataforma
+        - presenta un desarrollo activo con actualizaciones frecuentes
+        - su funcionalidad se divide en paquetes modulares (`packages`)
+        - potentes capacidades de representación gráfica
+        - útil tanto para trabajo interactivo como para desarrollo de aplicaciones
+        - **software libre** con una comunidad de usuarios muy activa
+
+        </section>
+        <section data-markdown>
+        ## software libre
+        - ejecutar R con cualquier propósito sin coste
+        - acceder y estudiar el código fuente de R para adaptarlo a las necesidades del usuario
+        - redistribuir copias de R y devolver mejoras a la comunidad
+
+        **compartir conocimiento**
+
+        </section>
+        <section data-markdown>
+        ## ¿dónde está lo malo?
+        - basado en tecnología de hace 40 años
+        - poco soporte para gráficos 3-D o dinámicos
+        - su funcionalidad se basa en la demanda de los consumidores y las contribuciones de sus usuarios
+        - gestión de memoria, velocidad y eficiencia... **se hacen progresos**
+        - no vale para todo (pero esto ocurre también con Java, Python, PHP, VB...)
+
+        **compartir conocimiento**
+
+        </section>
+
+        <section data-markdown>
+       #[R vs Python](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.Tu=ZnkU)
+
+
+
+        </section>
+        <section>
+        <section data-markdown>
+        ##distribución
+
+        [Comprehensive R Archive Network (CRAN) ](https://cran.r-project.org/)
+
+        - sistema **"base"** (Linux, Mac, [Windows](http://cran.r-project.org/bin/windows/)...)
+        - todo lo demás: **paquetes**
+
+        </section>
+
+        <section data-markdown>
+        ##¿qué hay en el sistema base?
+        - el paquete `base`, necesario para ejecutar R y que contiene funciones básicas
+        - otros: `utils, stats, datasets, graphics, grDevices, grid, methods, tools, parallel, compiler, splines, tcltk, stats4`
+        - recomendados: `boot, class, cluster, codetools, foreign,  KernSmooth, lattice, mgcv, nlme, rpart, survival, MASS, spatial, nnet, Matrix`
+
+
+        </section>
+
+        <section data-markdown>
+        ##bibliotecas o paquetes
+        - 4000 paquetes en CRAN
+        - muchos paquetes asociados al [proyecto Bioconductor](http://bioconductor.org/)
+        - muchos paquetes "perdidos" en sitios web personales
+        - muchos paquetes en Github y Bitbucket
+
+        </section>
+        </section>
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,74 +1,109 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Miguel Expósito Martín">
+    <title>Introducción al análisis de datos con R - CEARC 2016</title>
 
-		<title>reveal.js</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/white.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <link href="https://cdn.jsdelivr.net/fontawesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
- <link href="https://cdn.jsdelivr.net/fontawesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-
-				<section>
-
-
+        <section>
 
 
-<h2> Introducción al análisis de datos con R <h2/>
+            <h2> Introducción al análisis de datos con <h2/>
 
-<i class="fa fa-code fa-5x" aria-hidden="true"></i>
+                <img alt="R logo" src="./img/R_logo.svg" width="50%"/>
 
 
-
-</section>
-				<section data-markdown>
+        </section>
+        <section data-markdown>
 
 1. Introducción y preliminares
 2. Estructuras de datos en R
 3. Programación en R
-4. Gráficos y documentación 
-</section>
-<section>Slide 3</section>
-			</div>
+4. Gráficos y documentación
+        </section>
+        <section data-markdown>
 
-		</div>
+## bibliografía
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+- [R programming for Data Science, by Roger Peng](./pdf/rprogramming.pdf)
+- [Sitio oficial de R](https://www.r-project.org/)
+- [OpenIntro Statistics](https://www.openintro.org/stat/textbook.php?stat_book=os)
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+        </section>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
+        <section data-markdown>
+        ## moocs
 
-		</script>
+        - [Coursera](https://www.coursera.org/learn/r-programming)
+        - [Datacamp](https://www.datacamp.com/community/open-courses/statistical-inference-and-data-analysis#gs.XHoqfh0)
+        - [Udacity](https://www.udacity.com/course/data-analysis-with-r--ud651)
 
-	</body>
+        </section>
+        <section data-markdown>
+## metodología
+
+- teoría
+- ejemplos
+- ejercicios prácticos
+
+
+        </section>
+
+        <section data-markdown>
+        ## entorno de desarrollo
+
+        - [instalación de R en Windows, Coursera](https://www.youtube.com/watch?v=LII6of-5Odw)
+        - [instalación de RStudio en Windows, Udacity](https://www.youtube.com/watch?v=5ZbjUEg4a1g)
+
+        </section>
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
 </html>
