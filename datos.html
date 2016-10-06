@@ -104,6 +104,10 @@
         - `NaN`: not a number (valores imposibles)
         - `NA`: not available (valores indefinidos)
 
+        `is.na()` , `is.nan()` comprueban los objetos
+
+        **un valor NaN también es NA, pero no al contrario**
+
         </section>
         <section data-markdown>
         ## atributos
@@ -158,6 +162,8 @@
                [,1] [,2] [,3]
             [1,]  1    3    5
             [2,]  2    4    6
+
+        **sólo pueden tener objetos de la misma clase**
 </section>
         <section data-markdown>
         ## matrices
@@ -171,7 +177,7 @@
             [1,]  1    3    5    7    9
             [2,]  2    4    6    8   10
 
-        así como concatenando columnas o filas:
+        así como concatenando columnas o filas con `cbind()` o `rbind()`:
             > x <- 1:3
             > y <- 10:12
             > cbind(x, y)
@@ -185,6 +191,94 @@
             y 10   11   12
 
     </section>
+        <section data-markdown>
+        ## listas
+        tipo especial de vector que puede contener elementos de distintas clases
+
+        creación arbitraria con `list()`:
+            > x <- list(1, "a", TRUE, 1 + 4i)
+            > x
+            [[1]]
+            [1] 1
+            [[2]]
+            [1] "a"
+            [[3]]
+            [1] TRUE
+            [[4]]
+            [1] 1+4i
+        también se puede crear una lista vacía de tamaño predeterminado con `vector()`:
+            > x <- vector("list", length = 5)
+    </section>
+        <section data-markdown>
+        ## factores
+        utilizados para representar datos categóricos ordenados o no ordenados
+
+        un factor equivale a un vector de enteros donde cada entero tiene una **etiqueta**
+
+        **son autodescriptivos**
+            > x <- factor(c("Masculino", "Masculino", "Femenino", "Masculino", "Femenino"))
+            > x
+            [1] Masculino Masculino Femenino Masculino Femenino
+            Levels: Femenino Masculino
+
+        importante en problemas de modelado: **orden de los factores**
+            > x <- factor(c("si", "si", "no", "si", "no"), levels = c("si", "no"))
+
+        </section>
+        <section data-markdown>
+        ## data frames
+        **importantísimo tipo de datos en R** para almacenar datos en forma de **tabla**
+
+        se representan como un tipo especial de lista donde cada elemento de la lista tiene la misma longitud
+
+        dicho de otra forma:
+
+        cada elemento de la lista es una columna y la longitud de cada elemento es el número de filas
+
+        pueden contener objetos de distintas clases en cada columna
+        </section>
+
+        <section data-markdown>
+        ## data frames
+        atributos: nombres de columna `names()` y de fila `row.names()`
+
+        lo normal es que se creen a partir de `read.table()` o `read.csv()`
+
+        se pueden convertir a una matriz: `data.matrix()`
+
+            x <- data.frame(id = 1:4, edad = c(28, 15, 76, 23))
+        </section>
+
+        <section data-markdown>
+        ## nombres
+        los objetos en R pueden tener nombres, lo que permite escribir código legible y objetos auto-descriptivos
+        vectores:
+            > x <- 1:3
+            > names(x) <- c("Cantabria", "España", "Total")
+            > x
+        listas:
+            > x <- list("Media" = 1, "Varianza" = 0, "Muestra" = 100)
+            > x
+        matrices:
+            > m <- matrix(1:4, nrow = 2, ncol = 2)
+            > dimnames(m) <- list(c("a", "b"), c("c", "d"))
+            > m
+        otra forma:
+            > colnames(m) <- c("h", "f")
+            > rownames(m) <- c("x", "z")
+            > m
+
+        </section>
+        <section data-markdown>
+        ## nombres
+        ojo: dataframes y matrices
+
+        |Objeto|Definir nombres de columna|Definir nombres de fila|
+        |------|--------------------------|-----------------------|
+        |data frame|names()|row.names()|
+        |matriz|colnames()|rownames()|
+
+        </section>
     </div>
 
 </div>
