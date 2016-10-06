@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Miguel Expósito Martín">
+    <title>Introducción al análisis de datos con R - CEARC 2016</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <link href="https://cdn.jsdelivr.net/fontawesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <section>
+
+
+            <h2> Estructuras de datos en <h2/>
+
+                <img alt="R logo" src="./img/R_logo.svg" width="50%"/>
+
+
+        </section>
+        <section data-markdown>
+
+# pero antes...
+
+[guía de estilo de Google](https://google.github.io/styleguide/Rguide.xml)
+
+[otra: Hadley Wickham](http://adv-r.had.co.nz/Style.html)
+
+[validador: Google Rlint](https://code.google.com/archive/p/google-rlint/)
+
+[lecturas sobre el validador...](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42577.pdf)
+        </section>
+        <section data-markdown>
+
+## operador de asignación
+
+`x <- 1`
+
+`mes <- "Enero"`
+
+        x <-  ## expresión incompleta: error
+        </section>
+        <section data-markdown>
+        ## evaluación
+            > x <- 5 ## no hay salida por pantalla
+            > x      ## impresión automática por pantalla
+            [1] 5
+            > print(x) ## impresión explícita por pantalla
+            [1] 5
+
+        **¡ojo! no es lo mismo el objeto en R que su impresión por pantalla**
+
+        </section>
+
+        <section data-markdown>
+        ## objetos: tipos "atómicos"
+
+        - carácter: `"Curso"`
+        - numérico (reales): `5.03`
+        - entero: `2`
+        - complejo: `2+4i`
+        - lógico: `TRUE/FALSE`
+
+        </section>
+        <section data-markdown>
+## vectores
+
+- tipo básico de objeto en R
+- `vector()` crea un vector vacío
+- `c()` combina sus argumentos para formar un vector
+
+**un vector sólo puede contener objetos del mismo tipo o clase** (excepción: lista)
+
+        c("pepe",2,3)
+        c(1,2,3)
+        9:29
+        c(TRUE, FALSE)
+        vector("numeric", length = 10)
+
+        </section>
+        <section data-markdown>
+        ## números
+        - objetos numéricos: números reales de precisión `double`
+        - entero explícito: `1L`
+        - `Inf`: infinito
+        - `NaN`: not a number (valores imposibles)
+        - `NA`: not available (valores indefinidos)
+
+        </section>
+        <section data-markdown>
+        ## atributos
+        **metadatos que describen el objeto**
+
+        nombres de columnas, nombres de dimensiones, tamaño de matrices, clases, etc.
+
+        acceso usando la función `attributes()`
+
+        </section>
+
+        <section data-markdown>
+        ## coerción
+        implícita:
+            > y <- c(1.7, "a") ## carácter
+            > y <- c(TRUE, 2)  ## numérico
+            > y <- c("a", TRUE)  ## carácter
+
+        explícita:
+            > x <- 0:6
+            > class(x)
+            [1] "integer"
+            > as.numeric(x)
+            [1] 0 1 2 3 4 5 6
+            > as.logical(x)
+            [1] FALSE TRUE TRUE TRUE TRUE TRUE TRUE
+            > as.character(x)
+            [1] "0" "1" "2" "3" "4" "5" "6"
+
+
+
+
+        </section>
+        <section data-markdown>
+        ## matrices
+        son **vectores con un atributo de dimensión**, que a su vez es un vector de enteros de longitud 2 (número de filas y número de columnas)
+            > m <- matrix(nrow = 2, ncol = 3)
+            > m
+               [,1] [,2] [,3]
+            [1,] NA   NA   NA
+            [2,] NA   NA   NA
+            > dim(m)
+            [1] 2 3
+            > attributes(m)
+            $dim
+            [1] 2 3
+
+        las matrices se construyen por columnas:
+
+            > m <- matrix(1:6, nrow = 2, ncol = 3)
+            > m
+               [,1] [,2] [,3]
+            [1,]  1    3    5
+            [2,]  2    4    6
+</section>
+        <section data-markdown>
+        ## matrices
+        también se pueden construir a partir de vectores, añadiendo un atributo de dimensión:
+            > m <- 1:10
+            > m
+            [1] 1 2 3 4 5 6 7 8 9 10
+            > dim(m) <- c(2, 5)
+            > m
+               [,1] [,2] [,3] [,4] [,5]
+            [1,]  1    3    5    7    9
+            [2,]  2    4    6    8   10
+
+        así como concatenando columnas o filas:
+            > x <- 1:3
+            > y <- 10:12
+            > cbind(x, y)
+            x y
+            [1,] 1 10
+            [2,] 2 11
+            [3,] 3 12
+            > rbind(x, y)
+            [,1] [,2] [,3]
+            x  1    2    3
+            y 10   11   12
+
+    </section>
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
