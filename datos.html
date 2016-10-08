@@ -279,6 +279,61 @@
         |matriz|colnames()|rownames()|
 
         </section>
+    <section>
+    <section data-markdown>
+    ## subsetting
+    - operador `[`: devuelve objeto de la misma clase que el original. Se pueden seleccionar múltiples elementos de un objeto.
+    - operador `[[`: usado para extraer elementos de una lista o un data frame. Sólo se puede extraer un único elemento que no tiene por qué ser de tipo lista o data frame.
+    - operador `$`: usado para extraer elementos de una lista o un data frame por nombre literal. Su semántica es similar a `[[`.
+    </section>
+<section data-markdown>
+## subsetting de un vector
+    > x <- c("a", "b", "c", "c", "d", "a")
+simple:
+    > x[2] ## Extraer el segundo elemento
+    [1] "b"
+múltiple:
+    > x[1:4]
+    [1] "a" "b" "c" "c"
+    > x[c(1, 3, 4)] # con vector arbitrario
+    [1] "a" "c" "c"
+que cumplen una condición lógica:
+    > x[x > "a"]
+    [1] "b" "c" "c" "d"
+
+</section>
+<section data-markdown>
+## subsetting de una matriz
+    > x <- matrix(1:6, 2, 3)
+simple:
+    > x[1, 2] ## fila 1, columna 2
+    [1] "3"
+filas o columnas completas:
+    > x[1,] ## primera fila
+    [1] 1 3 5
+    > x[, 2] # segunda columna
+    [1] "3" "4"
+    </section>
+<section data-markdown>
+## subsetting de una matriz
+### dimension dropping
+
+por defecto, cuando se recupera un único elemento de una matriz, este se devuelve en forma de **vector de un elemento** (y no de matriz de 1x1)
+
+lo mismo ocurre al extraer una única fila o columna
+
+para deshabilitar este comportamiento, usar `drop = FALSE`
+    > x <- matrix(1:6, 2, 3)
+    > x[1, 2]
+    [1] 3
+    > x[1, 2, drop = FALSE]
+        [,1]
+    [1,]  3
+
+
+ </section>
+
+    </section>
     </div>
 
 </div>
