@@ -332,9 +332,90 @@ para deshabilitar este comportamiento, usar `drop = FALSE`
 
 
  </section>
+<section data-markdown>
+## subsetting de una lista
+    > x <- list(edad = 1:4, peso = 3.3)
+    > x
+    $edad
+    [1] 1 2 3 4
+    $peso
+    [1] 3.3
+extracción de un único elemento:
+    > x[[1]]
+    [1] 1 2 3 4
+    > x[["peso"]] # con nombre de elemento
+    [1] 3.3
+    > x$peso # con operador $
+    [1] 3.3
+
+el operador `[[` puede trabajar con índices calculados
+
+el operador `$` sólo con literales
+    > nombre <- "edad"
+    > x[[nombre]]
+    [1] 1 2 3 4
+    > x$nombre
+    NULL
+</section>
+<section data-markdown>
+## subsetting de elementos anidados en una lista
+el operador `[[` acepta una secuencia de enteros para extraer un elemento anidado en una lista
+    > x <- list(a = list(10, 12, 14), b = c(3.14, 2.81))
+    > x[[c(1, 3)]]
+    [1] 14
+    > ## de otra forma
+    > x[[1]][[3]]
+    [1] 14
+
+**¡ojo! no es lo mismo que en una matriz**
+</section>
+<section data-markdown>
+## subsetting de múltiples elementos en una lista
+    > x <- list(cantidades = list(5, 6, 7), peso = 3.2, descripcion = "bultos")
+    > x[c(2,3)]
+    $peso
+    [1] 3.2
+    $descripcion
+    [1] "bultos"
+
+**¡ojo! no confundir `x[c(1,3)]` con `x[[c(1,3]]`**
+
+</section>
+<section data-markdown>
+## coincidencias parciales
+útil si el objeto de trabajo tiene nombres de elementos muy largos
+
+**utilizar sólo en modo interactivo, no en scripts largos**
+    > x <- list(elementoMuyLargo = 1:5)
+    > x$e
+    [1] 1 2 3 4 5
+    > x[["e", exact = FALSE]]
+    [1] 1 2 3 4 5
 
     </section>
-    </div>
+<section data-markdown>
+## eliminar valores no disponibles (NA)
+    > x <- c(1, 2, NA, 4, NA, 5)
+    > malos <- is.na(x)
+    > malos
+    [1] FALSE FALSE  TRUE FALSE  TRUE FALSE
+    > x[!malos]
+    [1] 1 2 4 5
+caso de múltiples objetos:
+    > x <- c(1, 2, NA, 4, NA, 5)
+    > y <- c("a", "b", NA, "d", NA, "f")
+    > buenos <- complete.cases(x, y)
+    > buenos
+    [1] TRUE TRUE FALSE TRUE FALSE TRUE
+    > x[buenos]
+    [1] 1 2 4 5
+    > y[buenos]
+    [1] "a" "b" "d" "f"
+    </section>
+
+    **`complete.cases` se puede usar con data frames
+</section>
+</div>
 
 </div>
 
