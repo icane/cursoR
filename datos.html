@@ -411,9 +411,53 @@ caso de múltiples objetos:
     [1] 1 2 4 5
     > y[buenos]
     [1] "a" "b" "d" "f"
+**`complete.cases` se puede usar con data frames**
     </section>
 
-    **`complete.cases` se puede usar con data frames
+
+</section>
+
+<section>
+<section data-markdown>
+## operaciones vectorizadas
+muchas operaciones en R están **vectorizadas**: ocurren en paralelo
+    > x <- 1:4
+    > y <- 6:9
+sin vectorización:
+    > z <- numeric(length(x))
+    > for(i in seq_along(x)) {
+    > z[i] <- x[i] + y[i]
+    > }
+    > z
+    > [1] 7 9 11 13
+con vectorización:
+    > z <- x + y
+    > z
+    [1] 7 9 11 13
+
+</section>
+<section data-markdown>
+## operaciones vectorizadas
+vectorización de operación lógica:
+    > x
+    [1] 1 2 3 4
+    > x > 2
+    [1] FALSE FALSE TRUE TRUE
+**operaciones matriciales vectorizadas**
+
+multiplicación elemento a elemento:
+    > x <- matrix(1:4, 2, 2)
+    > y <- matrix(rep(10, 4), 2, 2)
+    > x * y
+       [,1] [,2]
+    [1,] 10   30
+    [2,] 20   40
+multiplicación matricial verdadera:
+    > x %*% y
+        [,1] [,2]
+    [1,] 40   40
+    [2,] 60   60
+</section>
 </section>
 </div>
 
