@@ -566,6 +566,131 @@ paquete `readr`
     saveWorkbook(wb, "dataset.xlsx")
 </section>
 </section>
+<section>
+<section data-markdown>
+## más sobre dataframes
+una observación por fila y una variable, medida o característica de dicha observación por columna
+
+**paquete `deplyr`**, de Hadley Wickham (otra vez)
+
+proporciona una gramática sencilla para trabajar con data frames
+
+además, sus funciones son **muy rápidas** (codificadas en C++)
+</section>
+<section data-markdown>
+## propiedades de las funciones
+- el primer argumento es un data frame
+- el resto de argumentos indican qué hacer con él
+- es posible hacer referencia a las columnas sin usar el operador `$`
+- el resultado es un nuevo data frame
+- los data frames deben estar ordenados: una observación por fila y una característica por columna
+</section>
+<section data-markdown>
+## instalación y uso
+     > install.packages("dplyr")
+     > library(dplyr)
+## preparación
+     > dataset <- read.px("http://www.icane.es/data/api/active-population-aged-16-more-gender-age-group-activity-base-2011.pc-axis")
+     > datos <- dataset$DATA$value
+     > str(datos)
+</section>
+<section data-markdown>
+**`select()`**
+
+     > names(datos)
+     > subset <- select(datos, Sexo:value)
+     > head(subset)
+
+normalmente, el operador `:` no se puede usar con nombres o cadenas, pero dentro de `select()` se puede utilizar para especificar un rango de variables
+
+     > select(datos, -(Sexo:value))
+el signo negativo `-` permite exluir variables de la selección
+
+así se haría sin `dplyr`:
+     > i <- match("Sexo", names(datos))
+     > j <- match("value", names(datos))
+     > head(datos[, -(i:j)])
+
+</section>
+<section data-markdown>
+**`select()`**
+se pueden seleccionar nombres de variable basados en patrones:
+     > head(select(datos, ends_with("es")))
+     > head(select(datos, starts_with("S")))
+
+
+</section>
+<section data-markdown>
+**`filter()`**
+utilizado para extraer subconjuntos de filas. Más rápida que `subset()`
+
+     > tail(filter(datos, Variables=="Activos" & Sexo=="Ambos sexos" & Grupo.de.edad=="Total"))
+     > head(filter(datos, Variables=="Activos" & Sexo=="Ambos sexos" & Grupo.de.edad=="Total" & value > 275)
+     > filtrado <- filter(datos, Variables=="Activos" & Sexo=="Ambos sexos" & Grupo.de.edad=="Total")
+
+**importante:** la variable `filtrado` se usará a continuación
+</section>
+<section data-markdown>
+**`arrange()`**
+utilizado para reordenar las filas de un data frame según una de las variables o columnas, preservando el orden del resto (**normalmente un dolor hacerlo en R**)
+     > arrange(filtrado, desc(value))
+
+</section>
+<section data-markdown>
+**`rename()`**
+sorprendentemente, renombrar una columna de un data frame es complicado en R
+
+     > datos <- rename(datos, Valor = value)
+
+**ahora ya no**
+
+</section>
+<section data-markdown>
+**`mutate()`**
+
+permite realizar transformaciones de variables en un data frame
+
+      mutate(filtrado, value.new = value - mean(value))
+
+`transmute()` hace lo mismo, sólo que descarta las variables no transformadas
+</section>
+<section data-markdown>
+**`%>%`**
+
+operador tubería: concatena varias funciones de dplyr en una sóla.
+sustituye a las expresiones anidadas del tipo:
+
+     tercera(segunda(primera(x)))
+por:
+
+     primera(x) %>% segunda %>% tercera
+
+</section>
+<section data-markdown>
+###inciso
+paquete `tidyr`: permite ordenar los datos
+     > install.packages("tidyr")
+     > library("tidyr");
+
+`gather()`: datos "anchos" a "altos". Múltiples columnas a pares clave-valor.
+
+`separate()`: separa dos variables unidas en una columna.
+
+`spread()`: datos "altos" a "anchos". Dos columnas (par clave-valor) a múltiples columnas.
+
+     > filtrado <- filtrado %>% separate(Trimestres, c("anyo", "trimestre"), sep = " \\- ", remove=FALSE)
+</section>
+<section data-markdown>
+**`group_by()`**
+
+usado para generar estadísticas de resumen (agregados) dentro del estrato definido pro una variable
+
+se suele utilizar con la función `summarize()` para agregar los resultados agrupados
+    > anyos <- group_by(filtrado, anyo)
+    > summarize(anyos, activos=mean(Valor, na.rm = TRUE))
+</section>
+
+</section>
 </div>
 
 </div>
