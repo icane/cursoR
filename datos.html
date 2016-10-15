@@ -571,6 +571,19 @@ paquete `readr`
 ## más sobre dataframes
 una observación por fila y una variable, medida o característica de dicha observación por columna
 
+**funciones de exploración:**
+
+- `dim()`: mostrar dimensiones
+- `nrow()` y `ncol()`: mostrar número de filas y columnas
+- `head()`: previsualizar las primeras filas del dataset
+- `tail()`:  previsualizar las últimas filas del dataset
+- `summary()`: mostrar información sobre cada variable
+- `str()`: mostrar estructura sobre el data frame. **Muy potente**
+
+
+</section>
+<section data-markdown>
+## más sobre dataframes
 **paquete `deplyr`**, de Hadley Wickham (otra vez)
 
 proporciona una gramática sencilla para trabajar con data frames
@@ -614,6 +627,7 @@ así se haría sin `dplyr`:
 </section>
 <section data-markdown>
 **`select()`**
+
 se pueden seleccionar nombres de variable basados en patrones:
      > head(select(datos, ends_with("es")))
      > head(select(datos, starts_with("S")))
@@ -622,6 +636,7 @@ se pueden seleccionar nombres de variable basados en patrones:
 </section>
 <section data-markdown>
 **`filter()`**
+
 utilizado para extraer subconjuntos de filas. Más rápida que `subset()`
 
      > tail(filter(datos, Variables=="Activos" & Sexo=="Ambos sexos" & Grupo.de.edad=="Total"))
@@ -632,17 +647,22 @@ utilizado para extraer subconjuntos de filas. Más rápida que `subset()`
 </section>
 <section data-markdown>
 **`arrange()`**
+
 utilizado para reordenar las filas de un data frame según una de las variables o columnas, preservando el orden del resto (**normalmente un dolor hacerlo en R**)
      > arrange(filtrado, desc(value))
 
 </section>
 <section data-markdown>
 **`rename()`**
+
 sorprendentemente, renombrar una columna de un data frame es complicado en R
+    > names(datos)[names(datos)=="value"] <- "Valor"
+
+**ahora ya no tanto**
 
      > datos <- rename(datos, Valor = value)
 
-**ahora ya no**
+
 
 </section>
 <section data-markdown>
