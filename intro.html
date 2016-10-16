@@ -142,18 +142,215 @@ un dialecto del lenguaje de programación S
         [**cómo escribir y organizar un paquete**](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
 
         </section>
+        <section data-markdown>
+        ##instalación de un paquete
+            install.packages("swirl")
+        ##uso de un paquete
+            library("swirl").
+
+
+        </section>
 
         <section data-markdown>
+        ## instalación de R
         [instalación de R en Windows, Coursera](https://www.youtube.com/watch?v=LII6of-5Odw)
         </section>
 
-        <section data-markdown>
-        # RStudio
-        [instalación de RStudio en Windows, Udacity](https://www.youtube.com/watch?v=5ZbjUEg4a1g)
-        </section>
-        </section>
-    </div>
 
+        </section>
+    <section>
+    <section data-markdown>
+        ## RStudio
+        - Interfaz gráfica de usuario para R multiplataforma (Windows, Linux, Mac)
+        - Permite abrir varios scripts a la vez y ejecutar código seleccionado
+        - Muestra espacio de trabajo, historial, objetos del espacio de trabajo...
+        - Integra ayuda, gestión de librerías, etc.
+
+        **posibilita desarrollar cómodamente investigación reproducible con `knitr` y `rmarkdown`**
+
+
+    </section>
+    <section data-markdown>
+    ## instalación de RStudio
+    [instalación de RStudio en Windows, Udacity](https://www.youtube.com/watch?v=5ZbjUEg4a1g)
+    </section>
+    <section data-markdown>
+    ## estructura de un proyecto
+    hay muchas posibilidades, pero **lo importante es acordar una**
+
+    una ayuda: [`project template`](http://projecttemplate.net/)
+
+        install.packages("ProjectTemplate")
+
+
+    </section>
+    </section>
+    <section>
+    <section data-markdown>
+    ## git
+    [git + github + R](http://r-pkgs.had.co.nz/git.html), Hadley Wickham
+
+    Git es un sistema de control de versiones: registra cambios al código y comparte esos cambios con otros
+
+    normalmente se empareja con [GitHub](https://github.com/), un sitio web que permite compartir código con el mundo, solicitar mejoras y registrar incidencias
+
+    Git + GitHub es el sistema de control de versiones más usado entre los desarrolladores de paquetes de R (miles de paquetes en GitHub)
+
+    recurso: [git, la guía sencilla](http://rogerdudler.github.io/git-guide/index.es.html)
+    </section>
+<section data-markdown>
+## git
+- permite compartir código fácilmente
+- GitHub hace que el código fuente sea navegable y legible
+- se puede editar el mismo archivo por varios uusarios. Git combina cambios automáticamente o muestra conflictos para su solución.
+- Git permite comprobar qué se ha cambiado y deshacer errores
+
+      install.packages("devtools")
+      devtools::install_github("usuario/paquete")
+
+    </section>
+<section data-markdown>
+## git
+**importante:** acostumbrarse a usar git desde la consola (shell)
+
+desde RStudio: Tools -> Shell
+
+comandos más importantes de una shell:
+- `pwd`: muestra el directorio de trabajo actual.
+- `cd` *directorio*: cambia al directorio especificado. `cd ..` mueve un nivel hacia arriba.
+- `ls`: lista archivos en el directorio actual.
+
+[más recursos sobre shell](http://pgbovine.net/command-line-tutorial.htm)
+</section>
+<section data-markdown>
+## git: configuración inicial con R
+1. Instalación: [Windows](http://git-scm.com/download/win), [Linux](http://git-scm.com/download/linux), [Mac](http://git-scm.com/download/linux)
+2. Configuración de usuario
+
+       git config --global user.name "Miguel Expósito"
+       git config --global user.email "exposito_m@cantabria.es"
+
+3. Crear una cuenta de usuario **gratuita** en [GitHub](https://github.com/)
+4. Generar una clave SSH para identificación y subirla a GitHub (**si se considera necesario**)
+
+</section>
+<section data-markdown>
+##git: crear un repositorio local
+1. en RStudio -> opciones de proyecto -> panel Git/SVN: cambiar `Version control system` a `Git`.
+2. en una shell, en el directorio de trabajo, ejecutar:
+       git init
+3. aparecerá un panel de `git` en RStudio que lista cada archivo que se ha añadido, modificado o borrado
+
+**el comando `diff` permite visualizar las diferencias entre dos archivos o dos versiones del mismo archivo**
+</section>
+<section data-markdown>
+##git: registrando cambios
+la unidad de trabajo es el **commit**, una fotografía del código en un instante determinado del tiempo.
+
+**debe ser:**
+- mínimo: cambios relacionados con un único problema
+- completo: debería resolver el problema que dice resolver
+
+** se compone de:**
+- un identificador único (SHA)
+- un conjunto de cambios
+- un mensaje legible por humanos
+- un padre (el commit anterior)
+- un autor
+
+</section>
+<section data-markdown>
+## git: commits en RStudio
+un commit presenta dos fases:
+1. se indica qué archivos o cambios se incluirán en el siguiente commit (`add`)
+2. se confirman los cambios con un mensaje descriptivo (`commit`)
+
+en RStudio, las dos fases se realizan desde la ventana abierta con la opción `commit`
+
+
+</section>
+<section data-markdown>
+## git: mensajes en los commits
+
+1. deberían ser **concisos pero descriptivos**: de un vistazo deben dar a entender qué se está haciendo
+2. deberían describir el **por qué**, no el qué: lo que ha cambiado se puede recuperar con un `diff`. Debería proporcionarse un resumen de alto nivel enfocado en los motivos del cambio.
+
+si hacemos esto:
+- será más fácil trabajar con otros (conflictos)
+- los nuevos miembros del equipo comprenderán mejor la historia del código leyendo los históricos de commits
+- podremos ejecutar nuestro código en cualquier punto de la historia de su desarrollo
+
+tu más importante colaborador: **¡tu yo futuro!**
+
+</section>
+<section data-markdown>
+##git: deshacer un error
+en cambios que acabamos de hacer:
+- botón derecho en el archivo en el panel de git y `revert`
+- también se pueden descartar fragmentos en la ventana de `diff`: `discard chunk`
+
+si se ha hecho commit demasiado pronto:
+- enviar otro commit para enmendar: marcar `ammend previous commit` antes de enviar el commit.
+
+si está en la historia de commits:
+- navegar por la historia en el panel `history` y encontrar el identificador del comit al que se desea regresar
+- ejecutar en la shell: `git checkout <SHA> <archivo>`
+
+**y siempre hacer commit de los cambios**
+</section>
+<section data-markdown>
+## sincronización con GitHub
+1. crear un nuevo repositorio en GitHub
+2. añadir el remoto a nuestro repositorio local desde la shell:
+        git remote add origin https://github.com/usuario/repo.git
+
+para publicar código:
+
+        git push -u origin master
+
+para traerse código publicado:
+
+        git pull origin master
+
+</section>
+<section data-markdown>
+##git: otras funcionalidades útiles
+**`ignore`**: se añaden al archivo `.gitignore`. En RStudio, hacer click con el botón derecho en el archivo en el panel Git y seleccionar `Ignore`
+
+**`blame`**: muestra el último cambio realizado a cada línea de código, quién hizo el cambio y a qué commit pertenece el mismo.
+
+**muy útil cuando se está depurando un error**
+
+**`merge`**: fusiona código del repositorio remoto con el local. Se intenta hacer automáticamente, pero es posible tener que resolver conflictos manualmente si dos personas han editado el mismo fragmento de código.
+
+**¡ojo! si hay muchos cambios conflictivos, un merge puede llevar un ratito...**
+</section>
+<section data-markdown>
+##git: otras funcionalidades útiles
+**ramas o branches**: son realidades alternativas de la línea temporal del código. Se suelen usar para romper con el flujo principal de desarrollo.
+
+        git checkout -b develop
+
+ejemplo: **una rama `develop` para desarrollo y una rama `master` con código que funciona**
+
+combinar ramas:
+
+        git merge develop  ## combina develop con la rama actual
+
+cambiar de rama:
+
+        git checkout rama
+</section>
+<section data-markdown>
+##git: pull requests
+se trata de una herramienta para proponer y discutir cambios de manera previa a su fusión con un repositorio
+
+**se usa para contribuir con repositorios ajenos**
+
+existe [documentación en GitHub](https://help.github.com/articles/using-pull-requests/)
+
+
+</section>
 </div>
 
 <script src="lib/js/head.min.js"></script>
