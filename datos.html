@@ -97,6 +97,14 @@
 
         </section>
         <section data-markdown>
+        ## ejercicio
+             > library(swirl)
+             > swirl()
+
+        vectores
+
+        </section>
+        <section data-markdown>
         ## números
         - objetos numéricos: números reales de precisión `double`
         - entero explícito: `1L`
@@ -104,7 +112,7 @@
         - `NaN`: not a number (valores imposibles)
         - `NA`: not available (valores indefinidos)
 
-        `is.na()` , `is.nan()` comprueban los objetos
+        **`is.na()`** , `is.nan()` comprueban los objetos
 
         **un valor NaN también es NA, pero no al contrario**
 
@@ -141,6 +149,7 @@
 
 
         </section>
+        <section>
         <section data-markdown>
         ## matrices
         son **vectores con un atributo de dimensión**, que a su vez es un vector de enteros de longitud 2 (número de filas y número de columnas)
@@ -191,6 +200,7 @@
             y 10   11   12
 
     </section>
+        </section>
         <section data-markdown>
         ## listas
         tipo especial de vector que puede contener elementos de distintas clases
@@ -225,6 +235,7 @@
             > x <- factor(c("si", "si", "no", "si", "no"), levels = c("si", "no"))
 
         </section>
+        <section>
         <section data-markdown>
         ## data frames
         **importantísimo tipo de datos en R** para almacenar datos en forma de **tabla**
@@ -248,7 +259,8 @@
 
             x <- data.frame(id = 1:4, edad = c(28, 15, 76, 23))
         </section>
-
+        </section>
+        <section>
         <section data-markdown>
         ## nombres
         los objetos en R pueden tener nombres, lo que permite escribir código legible y objetos auto-descriptivos
@@ -277,7 +289,7 @@
         |------|--------------------------|-----------------------|
         |data frame|names()|row.names()|
         |matriz|colnames()|rownames()|
-
+        </section>
         </section>
     <section>
     <section data-markdown>
@@ -302,6 +314,12 @@ que cumplen una condición lógica:
     [1] "b" "c" "c" "d"
 
 </section>
+<section data-markdown>
+## ejercicio
+    > library(swirl)
+    > swirl()
+subsetting de vectores
+    </section>
 <section data-markdown>
 ## subsetting de una matriz
     > x <- matrix(1:6, 2, 3)
@@ -378,7 +396,7 @@ el operador `[[` acepta una secuencia de enteros para extraer un elemento anidad
     $descripcion
     [1] "bultos"
 
-**¡ojo! no confundir `x[c(1,3)]` con `x[[c(1,3]]`**
+**¡ojo! no confundir `x[c(1,3)]` con `x[[c(1,3)]]`**
 
 </section>
 <section data-markdown>
@@ -531,10 +549,12 @@ paquete `readr`
 </section>
 <section data-markdown>
 ### lectura de xlsx
+     > install.packages("xlsx")
      > library(xlsx)
      > datos <- read.xlsx("archivo.xlsx", sheetName="Hoja1")
 
 ### lectura de pc-axis
+     > install.packages("pxR")
      > library(pxR)
      > datos <- read.px("/archivo.px" )
 
@@ -581,6 +601,13 @@ una observación por fila y una variable, medida o característica de dicha obse
 - `str()`: mostrar estructura sobre el data frame. **Muy potente**
 
 
+</section>
+<section data-markdown>
+## ejercicio
+    > library(swirl)
+    > swirl()
+
+exploración de datos
 </section>
 <section data-markdown>
 ## más sobre dataframes
@@ -711,6 +738,17 @@ se suele utilizar con la función `summarize()` para agregar los resultados agru
 </section>
 
 </section>
+        <section>
+        <div>
+        <a href="http://www.icane.es"><img alt="Logotipo ICANE"  src="./img/logo500.png" style="max-width: none; max-height: none; color: rgb(255, 153, 0);  vertical-align:middle;" />
+        </a>
+        <a href="http://www.cantabria.es"><img alt="Logotipo DGOT"  src="./img/informatica500.png" style="max-width: none; max-height: none; color: rgb(255, 153, 0);  vertical-align:middle; " /> </a>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="https://github.com/icane/cursoR">Acceso al repositorio con la presentación</a></span></p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="https://icane.github.io/cursoR/index.html">Acceso a la presentación</a></span></p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="http://twitter.com/francisco_parra">Fco. Javier Parra Rodríguez</a></span>,Jefe de Servicio de Estadísticas Económicas y Socio-demográficas</p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="http://about.me/predicador37">Miguel Expósito Martín</a></span>,Jefe de Sección de Informática Estadística y Banco de Datos </p>
+        </div>
+        </section>
 </div>
 
 </div>
