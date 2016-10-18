@@ -80,6 +80,7 @@
         - lógico: `TRUE/FALSE`
 
         </section>
+        <section>
         <section data-markdown>
 ## vectores
 
@@ -102,7 +103,29 @@
              > swirl()
 
         vectores
+        </section>
+        <section data-markdown>
+        ## ejercicios
+        crear los siguientes vectores:
+        1. (1, 2, 3, ..., 19, 20)
+        2. (20, 19, ..., 2, 1)
+        3. (1, 2, 3... 19, 20, 19, 28, ..., 2, 1)
+        4. (4, 6, 3) y asignárselo la variable `tmp`
+        5. (4, 6, 3, 4, 6, 3..., 4, 6, 3) con 10 ocurrencias de 4
+        6. (4, 6, 3, 4, 6, 3..., 4, 6, 3, 4) con 11 ocurrencias de 4 y 10 de 6 y 3
+        7. (4, 4...4, 6, 6..., 6, 3, 3..., 3) con 10 ocurrencias de 4, 20 de 6 y 30 de 3
 
+        ** usar la ayuda de la función rep() para 5, 6 y 7**
+        </section>
+        <section data-markdown>
+        ## ejercicios
+        usar la función `paste()` para crear los siguientes vectores de caractéres de longitud 30:
+        1. ("etiqueta 1", "etiqueta 2", ....., "etiqueta 30").
+        2. ("fn1", "fn2", ..., "fn30").
+
+        **ojo: en el primer caso hay una separación de un espacio en blanco; en el segundo, no**
+
+        </section>
         </section>
         <section data-markdown>
         ## números
@@ -200,6 +223,18 @@
             y 10   11   12
 
     </section>
+<section data-markdown>
+## ejercicio
+dada la matriz
+
+        [,1] [,2] [,3]
+     [1,]  1    1    3
+     [2,]  5    2    6
+     [2,] -2   -1   -3
+
+1. verificar que A `*` A `*` A es 0
+2. reemplazar la tercera columna de A por la suma de la segunda y tercera columnas
+        </section>
         </section>
         <section data-markdown>
         ## listas
@@ -610,6 +645,20 @@ una observación por fila y una variable, medida o característica de dicha obse
 exploración de datos
 </section>
 <section data-markdown>
+## otras medidas descriptivas elementales
+- `mean()`: media
+- `sd()`: desviación estándar
+
+## ejercicio
+1. leer el archivo `http://verso.mat.uam.es/~joser.berrendero/datos/notas.txt` con separador: espacio, separador decimal: coma, cabeceras: sí
+2. ver los nombres de la variable del fichero
+3. inspeccionar las primeras filas
+4. obtener la media de ambos cursos
+5. obtener la desviación estándar de ambos cursos
+6. obtener un resumen de todas las variables del fichero
+
+</section>
+<section data-markdown>
 ## más sobre dataframes
 **paquete `deplyr`**, de Hadley Wickham (otra vez)
 
@@ -737,6 +786,64 @@ se suele utilizar con la función `summarize()` para agregar los resultados agru
     > summarize(anyos, activos=mean(Valor, na.rm = TRUE))
 </section>
 
+</section>
+<section>
+<section data-markdown>
+## ejercicio
+data frame `iris` de ejemplo en R, con medidas del pétalo y sépalo de tres especies de lirios.
+
+     data(iris)
+1. inspeccionar data frame
+2. inspeccionar variable factor `Species`
+3. averiguar qué índices corresponden a las 5 primeras observaciones de cada especie
+4. hacer subsetting del data frame seleccionando las 5 primeras observaciones de cada especie en filas y todas las columnas, y almacenarlo en una variable `lirios`
+5. mostrar el nuevo data frame por consola
+</section>
+<section data-markdown>
+## ejercicio
+selección de filas: `filter()`
+1. lirios de la especie *setosa*
+2. lirios de la especie *setosa* o *virginica*
+3. lirios de la especie *setosa* con longitud de sépalo (`Sepal.Length`) inferior a 5 mm.
+</section>
+<section data-markdown>
+## ejercicio
+selección de columnas: `select()`
+1. extraer longitud y ancho de sépalo para todas las observaciones
+2. extraer todas las variables entre la longitud del pétalo y la del sépalo
+3. extraer todas las variables menos la especie
+</section>
+<section data-markdown>
+## ejercicio
+ordenar: `arrange()`
+1. ordenar de acuerdo con la longitud del sépalo, ascendente y descendente
+2. ordenar según la especie por orden alfabético y luego de menor a mayor longitud del sépalo
+3. extraer todas las variables menos la especie
+</section>
+<section data-markdown>
+## ejercicio
+sintaxis en cadena: `%>%`
+
+seleccionar las variables que contienen las medidas del pétalo, los lirios para los que la longitud del pétalo es mayor que 4mm y ordenarlos de menor a mayor según la longitud del pétalo
+</section>
+<section data-markdown>
+## ejercicio
+añadir nuevas variables: `mutate()`
+
+crear y añadir una variable `forma` a `lirios` que corresponda al cociente entre la anchura y la longitud del pétalo
+
+**usar el operador `%>%` **
+
+</section>
+<section data-markdown>
+## ejercicio
+resumir subconjuntos de variables: `group_by()` + `summarise()`
+
+calcular la media de la longitud del pétalo para los lirios de cada una de las especies
+
+**usar el operador `%>%` **
+
+</section>
 </section>
         <section>
         <div>
