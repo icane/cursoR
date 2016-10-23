@@ -168,6 +168,63 @@ es necesario cuando el número de argumentos que se pasa a una función no puede
 los argumentos que vengan después de `...` deben ser nombrados total y explícitamente
 </section>
 </section>
+<section>
+<section data-markdown>
+## funciones bucle
+iteran en forma compacta
+
+- `lapply()`: itera una lista y evalúa una función en cada elemento
+- `sapply()`: igual que la anterior pero trata de simplificar el resultado
+- `apply()`: evalúa una función sobre los márgenes de un array
+- `tapply()`: evalúa una función en subconjuntos de un vector
+
+</section>
+<section data-markdown>
+## lapply()
+- itera sobre cada elemento de una lista
+- aplica una función (a especificar) a cada elemento de la lista
+- devuelve una lista
+
+         > x <- list(a = 1:5, b = rnorm(10))
+         > lapply(x, mean)
+
+**al pasar una función como argumento de una función, no es necesario incluir los paréntesis `()`**
+
+</section>
+<section data-markdown>
+## sapply()
+funciona igual que `lapply()` sólo que:
+- si el resultado es una lista donde cada elemento es de longitud 1, devuelve un vector
+- si el resultado es una lista donde cada elemento es un vector de la misma longitud (>1), devuelve una matriz
+- si no puede adivinar qué está pasando, devuelve una lista
+
+         > x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+         > lapply(x, mean)
+         > sapply(x, mean)
+
+</section>
+<section data-markdown>
+## tapply()
+aplica una función sobre subconjuntos de un vector
+    > ## datos simulados
+    > x <- c(rnorm(10), runif(10), rnorm(10, 1))
+    > ## definición de grupos con variable factor
+    > f <- gl(3, 10) ## 3 niveles de 10 repeticiones cada uno
+    > tapply(x, f, mean)
+</section>
+<section data-markdown>
+## apply()
+evalúa una función sobre los márgenes de un array
+
+se suele usar para aplicar una función sobre las filas o columnas de una matriz
+
+    > x <- matrix(rnorm(200), 20, 10)
+    > apply(x, 2, mean) ## obtener la media de cada columna
+    > apply(x, 1, sum) ## obtener la suma de cada fila
+
+**atajos**: `rowSums()`, `rowMeans()`, `colSums()`, `colMeans()`
+</section>
+</section>
 
         <section>
         <div>
