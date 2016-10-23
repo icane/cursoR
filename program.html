@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Miguel Expósito Martín">
+    <title>Introducción al análisis de datos con R - CEARC 2016</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <link href="https://cdn.jsdelivr.net/fontawesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <section>
+
+
+            <h2> Programación en R<h2/>
+
+                <img alt="R logo" src="./img/R_logo.svg" width="50%"/>
+
+
+        </section>
+<section data-markdown>
+## if-else
+
+     if ( condición1 ) {
+         ## hacer algo
+     } else if ( condición2 ) {
+         ## hacer otra cosa
+     } else {
+         ## hacer otra cosa diferente
+     }
+</section>
+<section data-markdown>
+## for
+     for (i in 1:10) {
+         print(i)
+     }
+</section>
+<section data-markdown>
+## while
+    count <- 0
+    while(count < 10) {
+        print(count)
+        count <- count + 1
+    }
+</section>
+<section data-markdown>
+## repeat
+    x <- 1
+    repeat {
+        print(x)
+        x = x+1
+        if (x == 6){
+        break
+        }
+    }
+</section>
+<section data-markdown>
+## next y break
+`next()`: ignora una iteración
+
+`break`: sale del bucle inmediatamente
+</section>
+<section>
+<section data-markdown>
+##funciones
+son objetos de primera clase en R
+
+- se pueden pasar como argumentos a otras funciones
+- se pueden anidar
+- aceptan parámetros
+- devuelven resultados
+</section>
+<section data-markdown>
+## funciones
+simple:
+
+    funcion <- function() { #definición
+        cat("Hola, mundo!\n")
+    }
+    > funcion() #llamada
+
+con parámetro `num` y valor devuelto `letras`:
+
+    funcion <- function(num) { #definición
+    hola <- "Hola, mundo!\n"
+    for(i in 1:num) {
+        cat(hola)
+    }
+    letras <- nchar(hello) * num
+    letras
+    }
+    > funcion(4) #llamada
+
+**en R, el valor devuelto por una función siempre es la última expresión evaluada**
+</section>
+<section data-markdown>
+## funciones
+con parámetro por defecto:
+
+    funcion <- function(num = 1) { #definición
+    hola <- "Hola, mundo!\n"
+    for(i in 1:num) {
+    cat(hola)
+    }
+    letras <- nchar(hello) * num
+    letras
+    }
+    > funcion() #llamada
+
+**`num` es un argumento formal porque está incluido en la definición de la función**
+
+los nombres de los argumentos se pueden indicar explícitamente:
+    > funcion(num = 2) # llamada
+</section>
+<section data-markdown>
+## coincidencia de argumentos
+puede ser posicional, por nombre o mixto
+
+    > str(rnorm)
+    function (n, mean = 0, sd = 1)
+
+posicional
+    > mydata <- rnorm(100, 2, 1)
+
+por nombre:
+    > mydata <- rnorm(sd = 1, n=100, mean=2)
+
+mixto:
+    > mydata <- rnorm(mean = 2, sd = 1, 100)
+
+**la coincidencia también puede ser parcial**
+
+
+</section>
+<section data-markdown>
+## el argumento `...`
+indica un número variable de argumentos que normalmente se pasan a otras funciones
+
+se usa cuando se extiende una función y no se quiere copiar toda la lista de argumentos de la original
+
+    myplot <- function(x, y, type = "l", ...) {
+        plot(x, y, type = type, ...) ## se pasa '...' a la función 'plot'
+    }
+
+es necesario cuando el número de argumentos que se pasa a una función no puede conocerse previamente
+
+    > args(paste)
+    > args(cat)
+
+los argumentos que vengan después de `...` deben ser nombrados total y explícitamente
+</section>
+</section>
+
+        <section>
+        <div>
+        <a href="http://www.icane.es"><img alt="Logotipo ICANE"  src="./img/logo500.png" style="max-width: none; max-height: none; color: rgb(255, 153, 0);  vertical-align:middle;" />
+        </a>
+        <a href="http://www.cantabria.es"><img alt="Logotipo DGOT"  src="./img/informatica500.png" style="max-width: none; max-height: none; color: rgb(255, 153, 0);  vertical-align:middle; " /> </a>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="https://github.com/icane/cursoR">Acceso al repositorio con la presentación</a></span></p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="https://icane.github.io/cursoR/index.html">Acceso a la presentación</a></span></p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="http://twitter.com/francisco_parra">Fco. Javier Parra Rodríguez</a></span>,Jefe de Servicio de Estadísticas Económicas y Socio-demográficas</p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="http://about.me/predicador37">Miguel Expósito Martín</a></span>,Jefe de Sección de Informática Estadística y Banco de Datos </p>
+        </div>
+        </section>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
