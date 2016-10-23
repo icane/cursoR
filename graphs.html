@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Miguel Expósito Martín">
+    <title>Introducción al análisis de datos con R - CEARC 2016</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <link href="https://cdn.jsdelivr.net/fontawesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <section>
+
+
+            <h2> Gráficos y documentación en<h2/>
+
+                <img alt="R logo" src="./img/R_logo.svg" width="50%"/>
+
+
+        </section>
+<section>
+<section data-markdown>
+## funciones exploratorias
+- `hist()`: visualización de distribución empírica de los datos
+- `boxplot()`: representación visual de mínimo, mediana, máximo... [diagrama de caja](https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/)
+- `plot()`: representación de nubes de puntos
+- `barplot()`: visualización de datos categóricos
+
+el operador "tilde" `~` representa dependencia izquierda derecha y se usa en las funciones gráficas para observar la dependencia de una variable frente a otra:
+
+     > plot(y ~ x)
+
+</section>
+<section data-markdown>
+## ejercicio
+datos de ejemplo:
+    > notas <- read.table('http://verso.mat.uam.es/~joser.berrendero/datos/notas.txt', sep = ' ', dec = ',', header=TRUE)
+
+1. representar histograma de las notas de 2009
+2. comparar notas de 2009 con notas de 2010 con un gráfico de caja
+3. comparar notas de 2010 para cada tipo de colegio con un gráfico de caja
+4. estudiar si hay relación entre notas de 2009 y 2010 con una nube de puntos
+5. usar `table()` y un gráfico de barras para representar cuántos alumnos hay por tipo de centro
+
+**usar el operador `~` para 3 y 4**
+
+</section>
+</section>
+<section>
+<section data-markdown>
+## biblioteca lattice
+    > library("lattice")
+
+los gráficos se crean con una única llamada (ej: `xyplot`,`bwplot`)
+
+**útiles para visualizar datos multidimensionales**
+
+    > plot(nota09 ~ nota10 | tipo, data = notas)
+
+</section>
+</section>
+
+<section>
+<section data-markdown>
+## biblioteca ggplot2
+    > install.packages("ggplot2")
+    > library("ggplot2")
+
+creado por [Hadley Wickham](http://ggplot2.org/): más intuitivo y fácil de usar que `lattice`
+
+plot con tendencia:
+    > qplot(nota09, nota10, data = notas, geom = c("point", "smooth"))
+histograma:
+    > qplot(nota09, fill=tipo, data = notas)
+diagrama de cajas:
+    > qplot(tipo, nota10, data = notas, geom = "boxplot")
+</section>
+<section data-markdown>
+## biblioteca ggplot2: facetas
+dividen el gráfico en paneles
+    > qplot(nota09, data = notas, facets = tipo ~ . )
+
+- la variable a la izquierda de `~` indica cómo se dividen las filas
+- la variable a la derecha de `~` indica cómo se dividen las columnas (`.` significa que ninguna)
+</section>
+</section>
+<section>
+<section data-markdown>
+## programación estadística documentada
+pros:
+
+- texto y código están en un único lugar y con el orden lógico dictado por el flujo del análisis
+- los resultados se actualizan automáticamente para reflejar cambios en datos, código, etc.
+- el código está vivo
+
+contras:
+- a veces texto y código en un único lugar hacen que sea difícil de leer
+- el procesado de documentos puede ser lento si el documento es muy largo
+</section>
+</section>
+
+
+<section>
+<section data-markdown>
+## documentación en R: markdown
+> Es una herramienta de conversión de texto a HTML para escritores en la web. Permite escribir formato en texto plano fácil de leer y escribir con el que se puede crear una página web.
+
+[John Gruber](http://daringfireball.net/)
+
+
+</section>
+<section data-markdown>
+## documentación en R: markdown
+los signos de puntuación significan lo que parecen
+
+Ejemplo: [**esta presentación**](https://github.com/icane/cursoR/)
+
+para generar un PDF maquetado con [latex](http://www.latex-project.org/) a partir de markdown:
+
+**[pandoc](http://pandoc.org/)**
+</section>
+<section data-markdown>
+## documentación en R: sintaxis markdown
+cabeceras
+    # cabecera de primer nivel
+    ## cabecera de segundo nivel
+    ### cabecera de tercer nivel
+formatos
+    *cursiva* y **negrita**
+listas no ordenadas:
+    - elemento 1
+    - elemento 2
+    - elemento 3
+listas ordenadas:
+    1. elemento 1
+    2. elemento 2
+    3. elemento 3
+enlaces:
+        `[Título del enlace](http://www.icane.es)`
+
+
+</section>
+</section>
+<section>
+<section data-markdown>
+## knitr
+paquete diseñado por [Yihui Xie](http://yihui.name/) para generar informes en R de forma elegante, dinámica, flexible y rápida
+
+buena idea para:
+- manuales y tutoriales
+- documentos técnicos de extensión corta o media
+- informes periódicos
+
+no tan buena idea para:
+- artículos de investigación muy largos
+- documentación de cálculos muy complejos
+- documentos que requieren formatos específicos complicados
+
+</section>
+<section data-markdown>
+##knitr
+     > install.packages("knitr")
+     > library("knitr")
+
+fragmentos o bloques de código en R:
+
+     ```{r} # comienzo de bloque de código en R
+     ``` # fin de bloque de código en R
+
+ocultar resultados:
+
+    ```{r results="hide"}
+
+hacer tablas:
+
+    library(xtable)
+    xt <- xtable(summary(cars))
+    print(xt, type = "html")
+
+</section>
+</section>
+
+
+        <section>
+        <div>
+        <a href="http://www.icane.es"><img alt="Logotipo ICANE"  src="./img/logo500.png" style="max-width: none; max-height: none; color: rgb(255, 153, 0);  vertical-align:middle;" />
+        </a>
+        <a href="http://www.cantabria.es"><img alt="Logotipo DGOT"  src="./img/informatica500.png" style="max-width: none; max-height: none; color: rgb(255, 153, 0);  vertical-align:middle; " /> </a>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="https://github.com/icane/cursoR">Acceso al repositorio con la presentación</a></span></p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="https://icane.github.io/cursoR/index.html">Acceso a la presentación</a></span></p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="http://twitter.com/francisco_parra">Fco. Javier Parra Rodríguez</a></span>,Jefe de Servicio de Estadísticas Económicas y Socio-demográficas</p>
+        <p style="font-size:20px; text-align:center; margin-top: 1em"><span style="font-weight: bold;"><a href="http://about.me/predicador37">Miguel Expósito Martín</a></span>,Jefe de Sección de Informática Estadística y Banco de Datos </p>
+        </div>
+        </section>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+        slideNumber: true,
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
