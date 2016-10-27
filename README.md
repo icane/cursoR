@@ -15,7 +15,30 @@ Ediciones: 1
 - Habilitar la opción gráficos de fondo
 - Guardar como PDF
 
-##Ejercicios
+Aún así, es posible descargarse una versión estática de las diapositivas en PDF desde el directorio `pdf` de este repositorio.
+
+##Ejercicios autoguiados
 
 Los ejercicios propuestos forman parte de un curso estándar de R desarrollado con [swirl](http://swirlstats.com/), *R programming*. Algunos capítulos del mismo han sido traducidos al castellano para este curso y están disponibles en:  
+
+     https://github.com/icane/Programando_en_R
+
+Para entrar al curso, es necesario tener instalado y cargado Swirl en R:
+
+    install.packages("swirl")
+    library("swirl")
+
+Después, es necesario actualizar o instalar el curso desde el repositorio:
+
+    install_course_github('icane','Programando_en_R')
+
+Para desinstalar el curso, basta con ejecutar:
+
+    uninstall_course("Programando_en_R")
+
+Una forma sencilla de actualizar los contenidos del curso sería desinstalarlo y volverlo a instalar.
+
+## Ejercicios del curso
+
+En el directorio `src` de este repositorio es posible encontrar las soluciones del profesor a los ejercicios propuestos a lo largo del curso.
 

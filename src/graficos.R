@@ -1,0 +1,5 @@
+hist(notas$nota09)
+boxplot(notas$nota09, notas$nota10)
+boxplot(notas$nota10 ~ notas$tipo)
+plot(notas$nota09 ~ notas$nota10)
+barplot(table(notas$tipo))
